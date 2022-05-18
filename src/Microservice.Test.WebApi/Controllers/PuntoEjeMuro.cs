@@ -11,7 +11,7 @@ namespace Microservice.Test.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<PaginatedList<PuntoEjeMuroDto>>> GetPuntoEjeMuroWithPagination([FromQuery] GetPuntoEjeMuroWithPaginationQuery query)
         {
-            return await Mediator.Send(query);
+            return Ok(await Mediator.Send(query));
         }
 
         [HttpPost]

@@ -9,7 +9,13 @@ namespace Microservice.Test.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<TodosEjes>> Get()
         {
-            return await Mediator.Send(new GetAllEjeMuroQuery());
+            return Ok(await Mediator.Send(new GetAllEjeMuroQuery()));
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EjeMuroRecord>> GetEjeMuroById(int id, GetEjeMuroByIdQuery query)
+        {
+            return  Ok(await Mediator.Send(query));
         }
 
         [HttpPost]
