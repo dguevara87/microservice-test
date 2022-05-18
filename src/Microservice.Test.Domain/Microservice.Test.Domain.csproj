@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\" />
+    <Compile Remove="Aggregates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Aggregates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Aggregates\**" />
   </ItemGroup>
 
 </Project>

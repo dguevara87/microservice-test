@@ -9,13 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProjectName.MicroserviceName.Application\ProjectName.MicroserviceName.Application.csproj" />
-    <ProjectReference Include="..\ProjectName.MicroserviceName.Infrastructure\ProjectName.MicroserviceName.Infrastructure.csproj" />
+    <ProjectReference Include="..\Microservice.Test.Application\Microservice.Test.Application.csproj" />
+    <ProjectReference Include="..\Microservice.Test.Infrastructure\Microservice.Test.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

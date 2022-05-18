@@ -14,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProjectName.MicroserviceName.Application\ProjectName.MicroserviceName.Application.csproj" />
+    <ProjectReference Include="..\Microservice.Test.Application\Microservice.Test.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Persistence\Migrations" />
   </ItemGroup>
 
 </Project>

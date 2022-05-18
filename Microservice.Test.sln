@@ -5,13 +5,13 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{750E9776-EFF9-400A-8AE7-07EE3C9E3479}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.MicroserviceName.Application", "src\ProjectName.MicroserviceName.Application\ProjectName.MicroserviceName.Application.csproj", "{EBCB7C51-F98E-4E32-BBF1-A0959A987986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Test.Application", "src\Microservice.Test.Application\Microservice.Test.Application.csproj", "{EBCB7C51-F98E-4E32-BBF1-A0959A987986}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.MicroserviceName.Infrastructure", "src\ProjectName.MicroserviceName.Infrastructure\ProjectName.MicroserviceName.Infrastructure.csproj", "{20DCF404-2F61-498A-ABB5-F8371106B7FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Test.Infrastructure", "src\Microservice.Test.Infrastructure\Microservice.Test.Infrastructure.csproj", "{20DCF404-2F61-498A-ABB5-F8371106B7FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.MicroserviceName.Domain", "src\ProjectName.MicroserviceName.Domain\ProjectName.MicroserviceName.Domain.csproj", "{AF7B2ADE-311D-40BC-BF52-4DEBD77E5802}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Test.Domain", "src\Microservice.Test.Domain\Microservice.Test.Domain.csproj", "{AF7B2ADE-311D-40BC-BF52-4DEBD77E5802}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.MicroserviceName.WebApi", "src\ProjectName.MicroserviceName.WebApi\ProjectName.MicroserviceName.WebApi.csproj", "{7FE33157-40D7-42B0-B814-023A3DF3604B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Test.WebApi", "src\Microservice.Test.WebApi\Microservice.Test.WebApi.csproj", "{7FE33157-40D7-42B0-B814-023A3DF3604B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9AC0874-F7D9-4B66-B45E-93F7DD488C42}"
 	ProjectSection(SolutionItems) = preProject

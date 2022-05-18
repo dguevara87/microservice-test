@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "ProjectName.MicroserviceName.WebApi": {
+    "Microservice.Test.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
