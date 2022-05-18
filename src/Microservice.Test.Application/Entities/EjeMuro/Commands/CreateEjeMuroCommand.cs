@@ -1,18 +1,19 @@
 using FluentValidation;
 using MediatR;
 using Microservice.Test.Application.Common.Interfaces;
+using Microservice.Test.Application.Entities.EjeMuro.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microservice.Test.Application.Entities.EjeMuro.Commands
 {
     // COMMAND
-    public class CreateEjeMuroCommand : IRequest<int>
+    public class CreateEjeMuroCommand : IRequest<EjeMuroRecord>
     {
         public string? Nombre { get; set; }
     }
     
     // HANDLER
-    public class CreateEjeMuroCommandHandler : IRequestHandler<CreateEjeMuroCommand, int>
+    public class CreateEjeMuroCommandHandler : IRequestHandler<CreateEjeMuroCommand, EjeMuroRecord>
     {
         private readonly IApplicationDbContext _context;
 
@@ -21,7 +22,7 @@ namespace Microservice.Test.Application.Entities.EjeMuro.Commands
             _context = context;
         }
         
-        public async Task<int> Handle(CreateEjeMuroCommand request, CancellationToken cancellationToken)
+        public async Task<EjeMuroRecord> Handle(CreateEjeMuroCommand request, CancellationToken cancellationToken)
         {
             var entity = new Domain.Entities.EjeMuro();
 
@@ -31,7 +32,7 @@ namespace Microservice.Test.Application.Entities.EjeMuro.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return entity.Id;
+            return new EjeMuroRecord(entity.Id, entity.Nombre);
         }
     }
 

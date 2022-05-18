@@ -27,7 +27,7 @@ namespace Microservice.Test.Application.Entities.EjeMuro.Queries
             {
                 Lists = await _context.EjeMuros
                     .AsNoTracking()
-                    .ProjectTo<EjeMuroMap>(_mapper.ConfigurationProvider)
+                    .ProjectTo<EjeMuroDto>(_mapper.ConfigurationProvider)
                     .OrderBy(t => t.Nombre)
                     .ToListAsync(cancellationToken)
             };

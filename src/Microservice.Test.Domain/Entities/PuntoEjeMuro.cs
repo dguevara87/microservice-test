@@ -4,6 +4,8 @@ namespace Microservice.Test.Domain.Entities
 {
     public class PuntoEjeMuro : AuditableEntity, IHasDomainEvent
     {
+        public int Id { get; set; }
+        
         public int EjeMuroId { get; set; }
 
         public string? Etiqueta { get; set; }

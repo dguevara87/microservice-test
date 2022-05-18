@@ -1,13 +1,15 @@
+using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microservice.Test.Application.Common.Exceptions;
 using Microservice.Test.Application.Common.Interfaces;
+using Microservice.Test.Application.Entities.EjeMuro.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microservice.Test.Application.Entities.EjeMuro.Commands
 {
     // COMMAND
-    public class UpdateEjeMuroCommand : IRequest
+    public class UpdateEjeMuroCommand : IRequest<EjeMuroRecord>
     {
         public int Id { get; set; }
 
@@ -15,7 +17,7 @@ namespace Microservice.Test.Application.Entities.EjeMuro.Commands
     }
     
     // HANDLER
-    public class UpdateEjeMuroCommandHandler : IRequestHandler<UpdateEjeMuroCommand>
+    public class UpdateEjeMuroCommandHandler : IRequestHandler<UpdateEjeMuroCommand, EjeMuroRecord>
     {
         private readonly IApplicationDbContext _context;
 
@@ -24,7 +26,7 @@ namespace Microservice.Test.Application.Entities.EjeMuro.Commands
             _context = context;
         }
         
-        public async Task<Unit> Handle(UpdateEjeMuroCommand request, CancellationToken cancellationToken)
+        public async Task<EjeMuroRecord> Handle(UpdateEjeMuroCommand request, CancellationToken cancellationToken)
         {
             var eje = await _context.EjeMuros.FindAsync(new object[] {request.Id}, cancellationToken);
 
@@ -35,7 +37,7 @@ namespace Microservice.Test.Application.Entities.EjeMuro.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return Unit.Value;
+            return new EjeMuroRecord(eje.Id, eje.Nombre);
         }
     }
     

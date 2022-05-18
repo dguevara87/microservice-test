@@ -2,11 +2,12 @@
 using FluentValidation;
 using MediatR;
 using Microservice.Test.Application.Common.Interfaces;
+using Microservice.Test.Application.Entities.PuntoEjeMuro.Queries;
 using Microservice.Test.Domain.Events;
 
 namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
 {
-    public class CreatePuntoEjeMuroCommand : IRequest<int>
+    public class CreatePuntoEjeMuroCommand : IRequest<PuntoEjeMuroRecord>
     {
         public int EjeMuroId { get; set; }
 
@@ -17,7 +18,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
         public double Y { get; set; }
     }
 
-    public class CreatePuntoEjeMuroCommandHandler : IRequestHandler<CreatePuntoEjeMuroCommand, int>
+    public class CreatePuntoEjeMuroCommandHandler : IRequestHandler<CreatePuntoEjeMuroCommand, PuntoEjeMuroRecord>
     {
         private readonly IApplicationDbContext _context;
 
@@ -26,7 +27,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
             _context = context;
         }
         
-        public async Task<int> Handle(CreatePuntoEjeMuroCommand request, CancellationToken cancellationToken)
+        public async Task<PuntoEjeMuroRecord> Handle(CreatePuntoEjeMuroCommand request, CancellationToken cancellationToken)
         {
             var punto = new Domain.Entities.PuntoEjeMuro
             {
@@ -39,7 +40,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return punto.Id;
+            return new PuntoEjeMuroRecord(punto.Id, punto.Etiqueta, punto.EjeMuroId, punto.X, punto.Y);
         }
     }
 

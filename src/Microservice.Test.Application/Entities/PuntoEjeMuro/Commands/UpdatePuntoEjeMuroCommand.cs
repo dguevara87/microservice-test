@@ -2,10 +2,11 @@ using FluentValidation;
 using MediatR;
 using Microservice.Test.Application.Common.Exceptions;
 using Microservice.Test.Application.Common.Interfaces;
+using Microservice.Test.Application.Entities.PuntoEjeMuro.Queries;
 
 namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
 {
-    public class UpdatePuntoEjeMuroCommand : IRequest
+    public class UpdatePuntoEjeMuroCommand : IRequest<PuntoEjeMuroRecord>
     {
         public int Id { get; set; }
         
@@ -18,7 +19,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
         public double Y { get; set; }
     }
     
-    public class UpdatePuntoEjeMuroCommandHandler : IRequestHandler<UpdatePuntoEjeMuroCommand>
+    public class UpdatePuntoEjeMuroCommandHandler : IRequestHandler<UpdatePuntoEjeMuroCommand, PuntoEjeMuroRecord>
     {
         private readonly IApplicationDbContext _context;
 
@@ -27,7 +28,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
             _context = context;
         }
         
-        public async Task<Unit> Handle(UpdatePuntoEjeMuroCommand request, CancellationToken cancellationToken)
+        public async Task<PuntoEjeMuroRecord> Handle(UpdatePuntoEjeMuroCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.PuntoEjeMuros
                 .FindAsync(new object[] { request.Id }, cancellationToken);
@@ -44,7 +45,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return Unit.Value;
+            return new PuntoEjeMuroRecord(entity.Id, entity.Etiqueta, entity.EjeMuroId, entity.X, entity.Y);
         }
     }
     
@@ -55,9 +56,6 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Commands
             RuleFor(v => v.Etiqueta)
                 .NotEmpty()
                 .MaximumLength(200);
-            
-            RuleFor(v => v.X).NotEmpty();
-            RuleFor(v => v.Y).NotEmpty();
         }
     }
 }

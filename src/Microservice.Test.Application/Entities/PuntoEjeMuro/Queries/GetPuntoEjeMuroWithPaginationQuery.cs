@@ -9,7 +9,7 @@ using Microservice.Test.Application.Common.Models;
 namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Queries
 {
     // Query
-    public class GetPuntoEjeMuroWithPaginationQuery : IRequest<PaginatedList<PuntoEjeMuroMap>>
+    public class GetPuntoEjeMuroWithPaginationQuery : IRequest<PaginatedList<PuntoEjeMuroDto>>
     {
         public int EjeMuroId { get; set; } 
         public int PageNumber { get; set; } 
@@ -17,7 +17,7 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Queries
     }
     
     // Handler
-    public class GetPuntoEjeMuroWithPaginationQueryHandler : IRequestHandler<GetPuntoEjeMuroWithPaginationQuery, PaginatedList<PuntoEjeMuroMap>>
+    public class GetPuntoEjeMuroWithPaginationQueryHandler : IRequestHandler<GetPuntoEjeMuroWithPaginationQuery, PaginatedList<PuntoEjeMuroDto>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -28,13 +28,13 @@ namespace Microservice.Test.Application.Entities.PuntoEjeMuro.Queries
             _mapper = mapper;
         }
 
-        public async Task<PaginatedList<PuntoEjeMuroMap>> Handle(GetPuntoEjeMuroWithPaginationQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<PuntoEjeMuroDto>> Handle(GetPuntoEjeMuroWithPaginationQuery request, CancellationToken cancellationToken)
         {
             return await _context.PuntoEjeMuros
                 .Where(x => x.EjeMuroId == request.EjeMuroId)
                 .OrderBy(x => x.Etiqueta)
-                .ProjectTo<PuntoEjeMuroMap>(_mapper.ConfigurationProvider)
-                .PaginatedListAsync(request.PageNumber, request.PageSize);
+                .ProjectTo<PuntoEjeMuroDto>(_mapper.ConfigurationProvider)
+                .PaginatedListAsync(request.PageNumber = 1, request.PageSize = 5);
         }
     }
     

@@ -3,17 +3,19 @@ using Microservice.Test.Application.Entities.PuntoEjeMuro.Queries;
 
 namespace Microservice.Test.Application.Entities.EjeMuro.Queries
 {
-    public class EjeMuroMap : IMapFrom<Domain.Entities.EjeMuro>
+    public class EjeMuroDto : IMapFrom<Domain.Entities.EjeMuro>
     {
-        public EjeMuroMap()
+        public EjeMuroDto()
         {
-            Puntos =  new List<PuntoEjeMuroMap>();
+            Puntos =  new List<PuntoEjeMuroDto>();
         }
 
         public int Id { get; set; }
         
         public string? Nombre { get; set; }
 
-        public IList<PuntoEjeMuroMap> Puntos { get; set; }
+        public IList<PuntoEjeMuroDto> Puntos { get; set; }
     }
+    
+    public record EjeMuroRecord(int Id, string? Nombre);
 }

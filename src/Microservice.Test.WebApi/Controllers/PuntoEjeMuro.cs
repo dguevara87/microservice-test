@@ -9,36 +9,32 @@ namespace Microservice.Test.WebApi.Controllers
     public class PuntoEjeMuro : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<PaginatedList<PuntoEjeMuroMap>>> GetPuntoEjeMuroWithPagination([FromQuery] GetPuntoEjeMuroWithPaginationQuery query)
+        public async Task<ActionResult<PaginatedList<PuntoEjeMuroDto>>> GetPuntoEjeMuroWithPagination([FromQuery] GetPuntoEjeMuroWithPaginationQuery query)
         {
             return await Mediator.Send(query);
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create(CreatePuntoEjeMuroCommand command)
+        public async Task<ActionResult<PuntoEjeMuroRecord>> Create(CreatePuntoEjeMuroCommand command)
         {
             return await Mediator.Send(command);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, UpdateEjeMuroCommand command)
+        public async Task<ActionResult<PuntoEjeMuroRecord>> Update(int id, UpdatePuntoEjeMuroCommand command)
         {
             if (id != command.Id)
             {
                 return BadRequest();
             }
 
-            await Mediator.Send(command);
-
-            return NoContent();
+            return await Mediator.Send(command);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<PuntoEjeMuroRecord>> Delete(int id)
         {
-            await Mediator.Send(new DeletePuntoEjeMuroCommand { Id = id });
-
-            return NoContent();
+            return await Mediator.Send(new DeletePuntoEjeMuroCommand { Id = id });
         }
     }
 }
