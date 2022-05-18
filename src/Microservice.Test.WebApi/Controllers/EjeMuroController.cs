@@ -13,8 +13,9 @@ namespace Microservice.Test.WebApi.Controllers
         }
         
         [HttpGet("{id}")]
-        public async Task<ActionResult<EjeMuroRecord>> GetEjeMuroById(int id, GetEjeMuroByIdQuery query)
+        public async Task<ActionResult<EjeMuroRecord>> GetEjeMuroById(int id)
         {
+            var query = new GetEjeMuroByIdQuery {Id = id}; 
             return  Ok(await Mediator.Send(query));
         }
 
